@@ -10,7 +10,7 @@ package Konto;
 			public InterestCalculator(AverageBalanceCalculator calculator) {
 				this.calculator = calculator;
 			}
-			public Transaction createInterestTransaction(LocalDate start, LocalDate end, LocalDate bookingDate, String description, BigDecimal grossInterest, BigDecimal taxBernd) {
+			public Transaction createInterestTransaction(LocalDate start, LocalDate end, LocalDate bookingDate, String description, BigDecimal grossInterest, BigDecimal taxBernd, String enteredBy) {
 				
 				if(start.isAfter(end)) {
 					throw new IllegalArgumentException("end date can't be After start date!");
@@ -47,7 +47,7 @@ package Konto;
 				
 				BigDecimal accountEffect = grossInterest.subtract(taxBernd);
 				
-				Transaction transaction = new Transaction(bookingDate, description, accountEffect, grossInterest, taxBernd, split);
+				Transaction transaction = new Transaction(bookingDate, description, accountEffect, grossInterest, taxBernd, split,enteredBy);
 				
 				return transaction;
 			}

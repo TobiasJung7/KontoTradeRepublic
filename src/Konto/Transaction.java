@@ -11,18 +11,19 @@ public class Transaction {
 	private final BigDecimal grossInterestRate;
 	private final BigDecimal taxBernd;
 	private final Split split;
+	private final String enteredBy;
 	
 	//normal Transaction
 	
-	public Transaction (LocalDate date, TransactionType type, String description, BigDecimal accountEffect, Split split) {
-		this (date, type, description, accountEffect, BigDecimal.ZERO, BigDecimal.ZERO, split);
+	public Transaction(LocalDate date, TransactionType type, String description, BigDecimal accountEffect, Split split, String enteredBy) {
+		this (date, type, description, accountEffect, BigDecimal.ZERO, BigDecimal.ZERO, split, enteredBy);
 	}
 	//Interest Transaction
-	public Transaction(LocalDate date, String description,BigDecimal accountEffect, BigDecimal grossInterestRate, BigDecimal TaxBernd,  Split split) {
-		this(date, TransactionType.Interest, description, grossInterestRate.subtract(TaxBernd), grossInterestRate, TaxBernd, split);
+	public Transaction(LocalDate date, String description,BigDecimal accountEffect, BigDecimal grossInterestRate, BigDecimal TaxBernd,  Split split, String enteredBy) {
+		this(date, TransactionType.Interest, description, grossInterestRate.subtract(TaxBernd), grossInterestRate, TaxBernd, split, enteredBy);
 	}
 	//main Transaction
-	public Transaction(LocalDate date, TransactionType type, String description, BigDecimal accountEffect, BigDecimal grossInterestRate, BigDecimal TaxBernd, Split split) {
+	public Transaction(LocalDate date, TransactionType type, String description, BigDecimal accountEffect, BigDecimal grossInterestRate, BigDecimal TaxBernd, Split split, String enteredBy) {
 		this.date = Objects.requireNonNull(date);
 		this.type = Objects.requireNonNull(type);
 		this.description = Objects.requireNonNull(description);
@@ -30,6 +31,7 @@ public class Transaction {
 		this.grossInterestRate = requireNonNullMoney(grossInterestRate);
 		this.taxBernd = requireNonNullMoney(TaxBernd);
 		this.split = Objects.requireNonNull(split);
+		this.enteredBy = enteredBy;
 		validate();
 	}
 	private void validate() {

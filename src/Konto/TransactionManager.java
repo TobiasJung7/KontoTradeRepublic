@@ -113,5 +113,13 @@ public class TransactionManager {
 	    }
 	    transactions.set(index, transaction);
 	}
+
+	public void replaceAllTransactions(List<Transaction> newTransactions) {
+	    if (newTransactions == null) {
+	        throw new IllegalArgumentException("Transaktionsliste darf nicht null sein.");
+	    }
+	
+	    this.transactions = new ArrayList<>(newTransactions);
+	}
 }
 

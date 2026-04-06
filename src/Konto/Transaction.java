@@ -78,6 +78,9 @@ public class Transaction {
 	public BigDecimal getBerndSplit() {
 		return split.getBernd();
 	}
+	public String getEnteredBy() {
+	    return enteredBy;
+	}
 	
 	 private BigDecimal requireNonNullMoney(BigDecimal value) {
 	        return Objects.requireNonNull(value);
